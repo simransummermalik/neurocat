@@ -1,0 +1,1397 @@
+
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 NeuroCat - Science Presentation 🌸</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 25%, #ede9fe 50%, #fce7f3 75%, #fdf2f8 100%);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .kawaii-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            color: #f472b6;
+            font-size: 20px;
+            animation: floatHeart 8s infinite ease-in-out;
+            opacity: 0.3;
+        }
+        
+        .floating-star {
+            position: absolute;
+            color: #c084fc;
+            font-size: 16px;
+            animation: floatStar 6s infinite ease-in-out;
+            opacity: 0.4;
+        }
+        
+        .floating-sparkle {
+            position: absolute;
+            color: #f9a8d4;
+            font-size: 12px;
+            animation: sparkle 4s infinite ease-in-out;
+            opacity: 0.5;
+        }
+        
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+        
+        @keyframes floatStar {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.2); }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+        }
+        
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 40px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: slideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(3deg); }
+            75% { transform: rotate(-3deg); }
+        }
+        
+        @keyframes kawaiiBounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        .kawaii-cat {
+            position: relative;
+            width: 120px;
+            height: 100px;
+            margin: 15px;
+            animation: kawaiiBounce 3s infinite ease-in-out;
+        }
+        
+        .cat-body {
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(135deg, #f9a8d4, #f472b6);
+            border-radius: 40px 40px 20px 20px;
+            position: absolute;
+            bottom: 15px;
+            left: 20px;
+            box-shadow: 0 8px 20px rgba(244, 114, 182, 0.3);
+        }
+        
+        .cat-head {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #f9a8d4, #f472b6);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 32px;
+            box-shadow: 0 8px 20px rgba(244, 114, 182, 0.3);
+        }
+        
+        .cat-ears {
+            position: absolute;
+            top: -8px;
+            left: 8px;
+        }
+        
+        .cat-ears::before,
+        .cat-ears::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 20px solid #f472b6;
+            filter: drop-shadow(0 4px 8px rgba(244, 114, 182, 0.3));
+        }
+        
+        .cat-ears::after {
+            left: 20px;
+        }
+        
+        .cat-face {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 25px;
+            height: 25px;
+        }
+        
+        .cat-eyes {
+            position: absolute;
+            top: 5px;
+            left: 3px;
+        }
+        
+        .cat-eyes::before,
+        .cat-eyes::after {
+            content: '•';
+            position: absolute;
+            font-size: 12px;
+            color: #1f2937;
+            animation: blink 4s infinite;
+        }
+        
+        .cat-eyes::after {
+            left: 12px;
+        }
+        
+        @keyframes blink {
+            0%, 90%, 100% { opacity: 1; }
+            95% { opacity: 0; }
+        }
+        
+        .cat-nose {
+            position: absolute;
+            top: 12px;
+            left: 9px;
+            width: 0;
+            height: 0;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-top: 4px solid #ec4899;
+        }
+        
+        .cat-mouth {
+            position: absolute;
+            top: 16px;
+            left: 7px;
+            width: 10px;
+            height: 5px;
+            border: 2px solid #ec4899;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .cat-whiskers {
+            position: absolute;
+            top: 10px;
+            left: -5px;
+            width: 35px;
+            height: 15px;
+        }
+        
+        .cat-whiskers::before,
+        .cat-whiskers::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 1px;
+            background: #ec4899;
+            top: 7px;
+        }
+        
+        .cat-whiskers::before {
+            left: 0;
+            transform: rotate(15deg);
+        }
+        
+        .cat-whiskers::after {
+            right: 0;
+            transform: rotate(-15deg);
+        }
+        
+        .cat-tail {
+            position: absolute;
+            bottom: 25px;
+            right: -10px;
+            width: 30px;
+            height: 8px;
+            background: linear-gradient(90deg, #f472b6, #f9a8d4);
+            border-radius: 20px;
+            transform: rotate(45deg);
+            animation: tailWag 2s infinite ease-in-out;
+        }
+        
+        @keyframes tailWag {
+            0%, 100% { transform: rotate(45deg); }
+            50% { transform: rotate(25deg); }
+        }
+        
+        /* Different cat colors */
+        .cat-purple .cat-body,
+        .cat-purple .cat-head {
+            background: linear-gradient(135deg, #c084fc, #a855f7);
+            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+        }
+        
+        .cat-purple .cat-ears::before,
+        .cat-purple .cat-ears::after {
+            border-bottom-color: #a855f7;
+        }
+        
+        .cat-purple .cat-tail {
+            background: linear-gradient(90deg, #a855f7, #c084fc);
+        }
+        
+        .cat-lavender .cat-body,
+        .cat-lavender .cat-head {
+            background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            box-shadow: 0 8px 20px rgba(196, 181, 253, 0.3);
+        }
+        
+        .cat-lavender .cat-ears::before,
+        .cat-lavender .cat-ears::after {
+            border-bottom-color: #c4b5fd;
+        }
+        
+        .cat-lavender .cat-tail {
+            background: linear-gradient(90deg, #c4b5fd, #ddd6fe);
+        }
+        
+        /* Movement animations */
+        .normal-movement {
+            animation: smoothWalk 4s ease-in-out infinite, kawaiiBounce 3s infinite ease-in-out;
+        }
+        
+        .ch-movement {
+            animation: wobbleWalk 4s ease-in-out infinite, kawaiiBounce 3s infinite ease-in-out;
+        }
+        
+        @keyframes smoothWalk {
+            0%, 100% { transform: translateX(0) rotate(0deg) scale(1); }
+            25% { transform: translateX(20px) rotate(2deg) scale(1.05); }
+            50% { transform: translateX(40px) rotate(0deg) scale(1); }
+            75% { transform: translateX(20px) rotate(-2deg) scale(1.05); }
+        }
+        
+        @keyframes wobbleWalk {
+            0% { transform: translateX(0) rotate(0deg) scale(1); }
+            12.5% { transform: translateX(5px) rotate(8deg) scale(0.95); }
+            25% { transform: translateX(10px) rotate(-5deg) scale(1.1); }
+            37.5% { transform: translateX(18px) rotate(12deg) scale(0.9); }
+            50% { transform: translateX(25px) rotate(-8deg) scale(1.05); }
+            62.5% { transform: translateX(32px) rotate(10deg) scale(0.95); }
+            75% { transform: translateX(38px) rotate(-6deg) scale(1.1); }
+            87.5% { transform: translateX(42px) rotate(7deg) scale(0.9); }
+            100% { transform: translateX(45px) rotate(0deg) scale(1); }
+        }
+        
+        .kawaii-brain {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            margin: 20px;
+        }
+        
+        .brain-main {
+            width: 160px;
+            height: 100px;
+            background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            border-radius: 80px 80px 40px 40px;
+            position: absolute;
+            top: 0;
+            left: 20px;
+            box-shadow: 0 10px 25px rgba(196, 181, 253, 0.4);
+        }
+        
+        .brain-face {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .brain-eyes {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+        
+        .brain-eyes::before,
+        .brain-eyes::after {
+            content: '◕';
+            position: absolute;
+            font-size: 16px;
+            color: #1f2937;
+            animation: blink 3s infinite;
+        }
+        
+        .brain-eyes::after {
+            left: 16px;
+        }
+        
+        .brain-smile {
+            position: absolute;
+            top: 25px;
+            left: 12px;
+            width: 16px;
+            height: 8px;
+            border: 2px solid #7c3aed;
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+        }
+        
+        .cerebellum-kawaii {
+            width: 60px;
+            height: 45px;
+            background: linear-gradient(135deg, #f9a8d4, #f472b6);
+            border-radius: 30px;
+            position: absolute;
+            bottom: 10px;
+            right: 0;
+            animation: brainWave 3s ease-in-out infinite;
+            box-shadow: 0 8px 20px rgba(244, 114, 182, 0.4);
+        }
+        
+        .cerebellum-damaged {
+            width: 35px;
+            height: 25px;
+            background: linear-gradient(135deg, #fecaca, #fca5a5);
+            opacity: 0.8;
+            position: relative;
+        }
+        
+        .cerebellum-damaged::after {
+            content: '💔';
+            position: absolute;
+            top: -5px;
+            right: -15px;
+            font-size: 12px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes brainWave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.1); }
+        }
+        .kawaii-virus {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle, #ef4444, #dc2626);
+            border-radius: 50%;
+            animation: virusFloat 3s infinite ease-in-out;
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+        }
+        
+        .kawaii-virus::before {
+            content: '😈';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 12px;
+        }
+        
+        .virus-spikes {
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            width: 31px;
+            height: 31px;
+        }
+        
+        .virus-spikes::before,
+        .virus-spikes::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #dc2626;
+            border-radius: 50%;
+        }
+        
+        .virus-spikes::before {
+            top: 0;
+            left: 12px;
+        }
+        
+        .virus-spikes::after {
+            bottom: 0;
+            right: 12px;
+        }
+        
+        @keyframes virusFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
+        }
+        
+        /* Typography */
+        h1 {
+            font-family: 'Comfortaa', cursive;
+            font-size: 4rem;
+            background: linear-gradient(135deg, #f472b6, #c084fc, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(244, 114, 182, 0.3);
+        }
+        
+        h2 {
+            font-family: 'Comfortaa', cursive;
+            font-size: 2.5rem;
+            color: #7c3aed;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(124, 58, 237, 0.2);
+        }
+        
+        .bullet-point {
+            font-size: 1.4rem;
+            color: #7c3aed;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .bullet-point::before {
+            content: "🌸";
+            font-size: 1.5rem;
+            margin-right: 15px;
+            animation: sparkle 3s infinite;
+        }
+        
+        .kawaii-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(244, 114, 182, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .kawaii-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(244, 114, 182, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .content-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            gap: 40px;
+        }
+        
+        .visual-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .text-section {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .kawaii-highlight {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 25px;
+            border-radius: 20px;
+            border: 3px solid #f59e0b;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .kawaii-highlight::before {
+            content: '✨';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            animation: sparkle 2s infinite;
+        }
+        
+        .stat-display {
+            font-family: 'Comfortaa', cursive;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #92400e;
+            display: block;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(146, 64, 14, 0.3);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #78350f;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        
+        /* Simulation visual */
+        .kawaii-simulation {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 20px 40px rgba(244, 114, 182, 0.2);
+            border: 3px solid rgba(244, 114, 182, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .simulation-title {
+            font-family: 'Comfortaa', cursive;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #7c3aed;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .simulation-title::before {
+            content: '🧠';
+            margin-right: 10px;
+        }
+        
+        .simulation-title::after {
+            content: '💖';
+            margin-left: 10px;
+        }
+        
+        .monte-carlo-grid {
+            display: grid;
+            grid-template-columns: repeat(20, 1fr);
+            gap: 4px;
+            width: 100%;
+            height: 250px;
+            margin: 20px 0;
+        }
+        
+        .trial-dot {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: trialResult 0.8s ease-out forwards;
+            opacity: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes trialResult {
+            from { opacity: 0; transform: scale(0) rotate(0deg); }
+            to { opacity: 1; transform: scale(1) rotate(360deg); }
+        }
+        
+        .success { 
+            background: linear-gradient(135deg, #10b981, #34d399);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+        .jitter { 
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+        }
+        .failure { 
+            background: linear-gradient(135deg, #ef4444, #f87171);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+        
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f472b6, #c084fc);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(244, 114, 182, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .nav-btn:hover {
+            transform: scale(1.2) translateY(-5px);
+            box-shadow: 0 15px 35px rgba(244, 114, 182, 0.6);
+            background: linear-gradient(135deg, #ec4899, #a855f7);
+        }
+        
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-family: 'Comfortaa', cursive;
+            font-weight: 600;
+            color: #7c3aed;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
+            border: 3px solid rgba(244, 114, 182, 0.3);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #f472b6, #c084fc, #a855f7);
+            transition: width 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
+        }
+        
+        /* References styling */
+        .references-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            max-width: 900px;
+            text-align: left;
+        }
+        
+        .reference-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            color: #7c3aed;
+            border-left: 5px solid #f472b6;
+            box-shadow: 0 8px 20px rgba(244, 114, 182, 0.1);
+            position: relative;
+        }
+        
+        .reference-item::before {
+            content: '📚';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* Cat parade for title slide */
+        .cat-parade {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .parade-cat {
+            animation-delay: var(--delay);
+        }
+    </style>
+</head>
+<body>
+    <!-- floating emojis r here -->
+    <div class="kawaii-bg">
+        <div class="floating-heart" style="top: 10%; left: 5%;">💖</div>
+        <div class="floating-heart" style="top: 20%; right: 10%;">💕</div>
+        <div class="floating-heart" style="top: 60%; left: 8%;">💗</div>
+        <div class="floating-heart" style="bottom: 20%; right: 15%;">💝</div>
+        
+        <div class="floating-star" style="top: 15%; left: 15%;">⭐</div>
+        <div class="floating-star" style="top: 40%; right: 20%;">✨</div>
+        <div class="floating-star" style="bottom: 30%; left: 12%;">🌟</div>
+        <div class="floating-star" style="bottom: 10%; right: 8%;">💫</div>
+        
+        <div class="floating-sparkle" style="top: 25%; left: 25%;">✧</div>
+        <div class="floating-sparkle" style="top: 50%; right: 25%;">❋</div>
+        <div class="floating-sparkle" style="bottom: 40%; left: 20%;">✦</div>
+        <div class="floating-sparkle" style="bottom: 15%; right: 30%;">❈</div>
+    </div>
+
+    <div class="presentation-container">
+        <div class="progress-bar" id="progress-bar" style="width: 8.33333%;"></div>
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">12</span>
+        </div>
+        
+        <div class="slide active">
+            <h1>🌸 NeuroCat 🌸</h1>
+            <div class="kawaii-highlight" style="max-width: 800px;">
+                <div class="stat-display">Cerebellar Hypoplasia in Cats</div>
+                <div class="stat-label">Exploring Disease and Dysfunction in Animal Body Systems</div>
+            </div>
+            
+            <div class="cat-parade">
+                <div class="kawaii-cat parade-cat" style="--delay: 0s;">
+                    <div class="cat-head">
+                        <div class="cat-ears"></div>
+                        <div class="cat-face">
+                            <div class="cat-eyes"></div>
+                            <div class="cat-nose"></div>
+                            <div class="cat-mouth"></div>
+                            <div class="cat-whiskers"></div>
+                        </div>
+                    </div>
+                    <div class="cat-body"></div>
+                    <div class="cat-tail"></div>
+                </div>
+                
+                <div class="kawaii-cat cat-purple parade-cat" style="--delay: 0.5s;">
+                    <div class="cat-head">
+                        <div class="cat-ears"></div>
+                        <div class="cat-face">
+                            <div class="cat-eyes"></div>
+                            <div class="cat-nose"></div>
+                            <div class="cat-mouth"></div>
+                            <div class="cat-whiskers"></div>
+                        </div>
+                    </div>
+                    <div class="cat-body"></div>
+                    <div class="cat-tail"></div>
+                </div>
+                
+                <div class="kawaii-cat cat-lavender parade-cat" style="--delay: 1s;">
+                    <div class="cat-head">
+                        <div class="cat-ears"></div>
+                        <div class="cat-face">
+                            <div class="cat-eyes"></div>
+                            <div class="cat-nose"></div>
+                            <div class="cat-mouth"></div>
+                            <div class="cat-whiskers"></div>
+                        </div>
+                    </div>
+                    <div class="cat-body"></div>
+                    <div class="cat-tail"></div>
+                </div>
+            </div>
+            
+            <div class="bullet-point" style="font-size: 1.2rem; justify-content: center; color: #c084fc;">
+                Summer Malik | Animal Physiology | UNC Charlotte 
+            </div>
+        </div>
+        
+        <!-- Slide 2:Nervous System -->
+        <div class="slide">
+            <h2>🧠 The Feline Nervous System 🐱</h2>
+            <div class="content-visual">
+                <div class="visual-section">
+                    <div class="kawaii-brain" style="transform: scale(1.5);">
+                        <div class="brain-main">
+                            <div class="brain-face">
+                                <div class="brain-eyes"></div>
+                                <div class="brain-smile"></div>
+                            </div>
+                        </div>
+                        <div class="cerebellum-kawaii"></div>
+                    </div>
+                    
+                    <div class="cat-parade" style="margin-top: 30px;">
+                        <div class="kawaii-cat">
+                            <div class="cat-head">
+                                <div class="cat-ears"></div>
+                                <div class="cat-face">
+                                    <div class="cat-eyes"></div>
+                                    <div class="cat-nose"></div>
+                                    <div class="cat-mouth"></div>
+                                    <div class="cat-whiskers"></div>
+                                </div>
+                            </div>
+                            <div class="cat-body"></div>
+                            <div class="cat-tail"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-section">
+                    <div class="kawaii-box">
+                        <div class="bullet-point">Central Nervous System</div>
+                        <div class="bullet-point">Peripheral Nervous System</div>
+                        <div class="bullet-point">Motor Control Pathways</div>
+                        <div class="bullet-point">Sensory Integration</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Normal Cerebellar Function -->
+        <div class="slide">
+            <h2>✨ Normal Cerebellar Function ✨</h2>
+            <div class="content-visual">
+                <div class="visual-section">
+                    <div class="kawaii-brain" style="transform: scale(2);">
+                        <div class="brain-main">
+                            <div class="brain-face">
+                                <div class="brain-eyes"></div>
+                                <div class="brain-smile"></div>
+                            </div>
+                        </div>
+                        <div class="cerebellum-kawaii" style="border: 4px solid #3b82f6; animation: brainWave 2s ease-in-out infinite;"></div>
+                    </div>
+                    
+                    <div class="kawaii-highlight" style="margin-top: 40px;">
+                        <div class="stat-display">10%</div>
+                        <div class="stat-label">Brain Volume, 50% of Neurons 🧠</div>
+                    </div>
+                </div>
+                <div class="text-section">
+                    <div class="kawaii-box">
+                        <div class="bullet-point">Balance &amp; Coordination</div>
+                        <div class="bullet-point">Motor Learning</div>
+                        <div class="bullet-point">Fine Motor Control</div>
+                        <div class="bullet-point">Posture Regulation</div>
+                        <div class="bullet-point">Movement Timing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: What is CH? -->
+        <div class="slide">
+            <h2>💔 Cerebellar Hypoplasia 💔</h2>
+            <div class="content-visual">
+                <div class="visual-section">
+                    <div style="display: flex; justify-content: space-around; width: 100%; gap: 40px;">
+                        <div style="text-align: center;">
+                            <div class="kawaii-brain">
+                                <div class="brain-main">
+                                    <div class="brain-face">
+                                        <div class="brain-eyes"></div>
+                                        <div class="brain-smile"></div>
+                                    </div>
+                                </div>
+                                <div class="cerebellum-kawaii"></div>
+                            </div>
+                            <div style="margin-top: 20px; font-weight: 600; color: #10b981; font-family: 'Comfortaa', cursive;">💚 Normal Brain 💚</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="kawaii-brain">
+                                <div class="brain-main">
+                                    <div class="brain-face">
+                                        <div class="brain-eyes"></div>
+                                        <div style="position: absolute; top: 25px; left: 12px; width: 16px; height: 8px; border: 2px solid #ef4444; border-top: none; border-radius: 0 0 16px 16px; transform: rotate(180deg);"></div>
+                                    </div>
+                                </div>
+                                <div class="cerebellum-kawaii cerebellum-damaged"></div>
+                            </div>
+                            <div style="margin-top: 20px; font-weight: 600; color: #ef4444; font-family: 'Comfortaa', cursive;">💔 CH Brain 💔</div>
+                        </div>
+                    </div>
+                    
+                    <div class="kawaii-highlight">
+                        <div class="stat-display">60-80%</div>
+                        <div class="stat-label">Cerebellar Volume Reduction 😿</div>
+                    </div>
+                </div>
+                <div class="text-section">
+                    <div class="kawaii-box">
+                        <div class="bullet-point">Congenital Condition</div>
+                        <div class="bullet-point">Non-Progressive</div>
+                        <div class="bullet-point">Underdeveloped Cerebellum</div>
+                        <div class="bullet-point">Motor Coordination Affected</div>
+                        <div class="bullet-point">Intelligence Preserved</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Disease Cause -->
+        <div class="slide">
+            <h2>😈 Feline Panleukopenia Virus 😈</h2>
+            <div class="content-visual">
+                <div class="visual-section">
+                    <div style="position: relative; width: 400px; height: 300px;">
+                        <div class="kawaii-brain" style="transform: scale(1.5); position: absolute; top: 50px; left: 100px;">
+                            <div class="brain-main">
+                                <div class="brain-face">
+                                    <div class="brain-eyes"></div>
+                                    <div style="position: absolute; top: 25px; left: 12px; width: 16px; height: 8px; border: 2px solid #ef4444; border-top: none; border-radius: 0 0 16px 16px; transform: rotate(180deg);"></div>
+                                </div>
+                            </div>
+                            <div class="cerebellum-kawaii"></div>
+                        </div>
+                        <div class="kawaii-virus" style="top: 80px; left: 200px;">
+                            <div class="virus-spikes"></div>
+                        </div>
+                        <div class="kawaii-virus" style="top: 120px; left: 250px; animation-delay: 0.5s;">
+                            <div class="virus-spikes"></div>
+                        </div>
+                        <div class="kawaii-virus" style="top: 60px; left: 230px; animation-delay: 1s;">
+                            <div class="virus-spikes"></div>
+                        </div>
+                        <div class="kawaii-virus" style="top: 140px; left: 210px; animation-delay: 1.5s;">
+                            <div class="virus-spikes"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="kawaii-highlight">
+                        <div class="stat-display">Prenatal</div>
+                        <div class="stat-label">Infection During Development 🤱</div>
+                    </div>
+                </div>
+                <div class="text-section">
+                    <div class="kawaii-box">
+                        <div class="bullet-point">Maternal Infection</div>
+                        <div class="bullet-point">Targets Dividing Cells</div>
+                        <div class="bullet-point">Cerebellar Development Disrupted</div>
+                        <div class="bullet-point">Purkinje Cell Loss</div>
+                        <div class="bullet-point">Granule Cell Reduction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Motor System Disruption -->
+        <div class="slide">
+            <h2>🚶‍♀️ Motor System Disruption 🤸‍♀️</h2>
+            <div class="kawaii-box" style="width: 100%; max-width: 1000px; padding: 40px;">
+                <div style="display: flex; justify-content: space-around; align-items: center; margin: 40px 0;">
+                    <div style="text-align: center;">
+                        <div class="kawaii-cat normal-movement">
+                            <div class="cat-head">
+                                <div class="cat-ears"></div>
+                                <div class="cat-face">
+                                    <div class="cat-eyes"></div>
+                                    <div class="cat-nose"></div>
+                                    <div class="cat-mouth"></div>
+                                    <div class="cat-whiskers"></div>
+                                </div>
+                            </div>
+                            <div class="cat-body"></div>
+                            <div class="cat-tail"></div>
+                        </div>
+                        <div style="font-weight: 600; color: #10b981; margin-top: 20px; font-family: 'Comfortaa', cursive;">💚 Normal Gait 💚</div>
+                    </div>
+                    
+                    <div style="font-size: 4rem; color: #f472b6;">→</div>
+                    
+                    <div style="text-align: center;">
+                        <div class="kawaii-cat cat-purple ch-movement">
+                            <div class="cat-head">
+                                <div class="cat-ears"></div>
+                                <div class="cat-face">
+                                    <div class="cat-eyes"></div>
+                                    <div class="cat-nose"></div>
+                                    <div class="cat-mouth"></div>
+                                    <div class="cat-whiskers"></div>
+                                </div>
+                            </div>
+                            <div class="cat-body"></div>
+                            <div class="cat-tail"></div>
+                        </div>
+                        <div style="font-weight: 600; color: #a855f7; margin-top: 20px; font-family: 'Comfortaa', cursive;">💜 Ataxic Gait 💜</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 40px;">
+                    <div class="bullet-point">Ataxia (Unsteady Movement)</div>
+                    <div class="bullet-point">Intention Tremors</div>
+                    <div class="bullet-point">Wide-Based Stance</div>
+                    <div class="bullet-point">Head Bobbing</div>
+                    <div class="bullet-point">Falling Episodes</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Case Study - Olive -->
+        <div class="slide">
+            <h2>Case Study: Olive</h2>
+            <div class="content-visual">
+                <div class="visual-section">
+                    <div class="kawaii-cat cat-lavender" style="transform: scale(2); margin: 40px 0;">
+                        <div class="cat-head">
+                            <div class="cat-ears"></div>
+                            <div class="cat-face">
+                                <div class="cat-eyes"></div>
+                                <div class="cat-nose"></div>
+                                <div class="cat-mouth"></div>
+                                <div class="cat-whiskers"></div>
+                            </div>
+                        </div>
+                        <div class="cat-body"></div>
+                        <div class="cat-tail"></div>
+                    </div>
+                    
+                    <div class="kawaii-highlight">
+                        <div class="stat-display">3 Years</div>
+                        <div class="stat-label">Moderate CH Severity </div>
+                    </div>
+                </div>
+                <div class="text-section">
+                    <div class="kawaii-box">
+                        <div class="bullet-point">Tabby Cat, Female</div>
+                        <div class="bullet-point">Moderate Ataxia</div>
+                        <div class="bullet-point">Adaptive Behaviors</div>
+                        <div class="bullet-point">Wall-Following</div>
+                        <div class="bullet-point">Modified Climbing</div>
+                        <div class="bullet-point">High Quality of Life</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: NeuroCat Simulation -->
+        <div class="slide">
+            <h2>🧠 NeuroCat Simulation Model </h2>
+            <div class="content-visual">
+                <div class="visual-section">
+                    <div class="kawaii-simulation">
+                        <div class="simulation-title">Neural Pathway Simulation</div>
+                        <div class="monte-carlo-grid" id="simulation-grid"><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot success" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot failure" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div><div class="trial-dot jitter" style="animation-delay: 0s;"></div></div>
+                        <div style="display: flex; justify-content: center; gap: 30px; margin-top: 20px;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 20px; height: 20px; background: linear-gradient(135deg, #10b981, #34d399); border-radius: 50%; margin-right: 8px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);"></div>
+                                <span style="font-size: 1rem; color: #7c3aed; font-weight: 600;">Success ✨</span>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 20px; height: 20px; background: linear-gradient(135deg, #f59e0b, #fbbf24); border-radius: 50%; margin-right: 8px; box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);"></div>
+                                <span style="font-size: 1rem; color: #7c3aed; font-weight: 600;">Jitter 💫</span>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 20px; height: 20px; background: linear-gradient(135deg, #ef4444, #f87171); border-radius: 50%; margin-right: 8px; box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);"></div>
+                                <span style="font-size: 1rem; color: #7c3aed; font-weight: 600;">Failure 💔</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-section">
+                    <div class="kawaii-box">
+                        <div class="bullet-point">1000+ Trial Simulations</div>
+                        <div class="bullet-point">Neural Pathway Modeling</div>
+                        <div class="bullet-point">Failure Probability Calculation</div>
+                        <div class="bullet-point">Neuroplasticity Factors</div>
+                        <div class="bullet-point">Real-Time Visualization</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Research & Treatment -->
+        <div class="slide">
+            <h2>🔬 Current Research &amp; Treatment 💊</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 40px 0;">
+                <div class="kawaii-box" style="padding: 25px; margin: 10px; flex: 1;">
+                    <div style="text-align: center; margin-bottom: 20px; font-family: 'Comfortaa', cursive; font-size: 1.2rem; color: #7c3aed; font-weight: 600;">1960s 📚</div>
+                    <div style="font-size: 0.9rem; color: #7c3aed; text-align: center;">First Clinical Descriptions</div>
+                </div>
+                <div class="kawaii-box" style="padding: 25px; margin: 10px; flex: 1;">
+                    <div style="text-align: center; margin-bottom: 20px; font-family: 'Comfortaa', cursive; font-size: 1.2rem; color: #7c3aed; font-weight: 600;">1980s 🦠</div>
+                    <div style="font-size: 0.9rem; color: #7c3aed; text-align: center;">Viral Etiology Identified</div>
+                </div>
+                <div class="kawaii-box" style="padding: 25px; margin: 10px; flex: 1;">
+                    <div style="text-align: center; margin-bottom: 20px; font-family: 'Comfortaa', cursive; font-size: 1.2rem; color: #7c3aed; font-weight: 600;">2000s 🧠</div>
+                    <div style="font-size: 0.9rem; color: #7c3aed; text-align: center;">Neuroplasticity Research</div>
+                </div>
+                <div class="kawaii-box" style="padding: 25px; margin: 10px; flex: 1;">
+                    <div style="text-align: center; margin-bottom: 20px; font-family: 'Comfortaa', cursive; font-size: 1.2rem; color: #7c3aed; font-weight: 600;">2020s 🧬</div>
+                    <div style="font-size: 0.9rem; color: #7c3aed; text-align: center;">Gene Therapy Trials</div>
+                </div>
+            </div>
+            
+            <div class="kawaii-box" style="max-width: 800px;">
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                    <div class="bullet-point">Environmental Modifications</div>
+                    <div class="bullet-point">Physical Therapy</div>
+                    <div class="bullet-point">Assistive Devices</div>
+                    <div class="bullet-point">Stem Cell Research</div>
+                    <div class="bullet-point">Quality of Life Focus</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 10: Key Findings -->
+        <div class="slide">
+            <h2>✨ Key Findings ✨</h2>
+            <div class="content-visual">
+                <div class="visual-section">
+                    <div class="kawaii-highlight">
+                        <div class="stat-display">65%</div>
+                        <div class="stat-label">Motor Success Rate (CH Cats) 💜</div>
+                    </div>
+                    <div class="kawaii-highlight">
+                        <div class="stat-display">2.3x</div>
+                        <div class="stat-label">Neuroplasticity Adaptation 🧠</div>
+                    </div>
+                    <div class="kawaii-highlight">
+                        <div class="stat-display">85%</div>
+                        <div class="stat-label">Quality of Life Maintained 💖</div>
+                    </div>
+                </div>
+                <div class="text-section">
+                    <div class="kawaii-box">
+                        <div class="bullet-point">Individual Variation High</div>
+                        <div class="bullet-point">Adaptation Over Time</div>
+                        <div class="bullet-point">Environmental Impact</div>
+                        <div class="bullet-point">Compensation Strategies</div>
+                        <div class="bullet-point">Resilience Over Perfection</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 11: Conclusion -->
+        <div class="slide">
+            <h2>Physiological Significance</h2>
+            <div class="content-visual">
+                <div class="visual-section">
+                    <div class="cat-parade">
+                        <div class="kawaii-cat" style="animation: kawaiiBounce 2s infinite ease-in-out;">
+                            <div class="cat-head">
+                                <div class="cat-ears"></div>
+                                <div class="cat-face">
+                                    <div class="cat-eyes"></div>
+                                    <div class="cat-nose"></div>
+                                    <div class="cat-mouth"></div>
+                                    <div class="cat-whiskers"></div>
+                                </div>
+                            </div>
+                            <div class="cat-body"></div>
+                            <div class="cat-tail"></div>
+                        </div>
+                        <div class="kawaii-cat cat-purple" style="animation: kawaiiBounce 2s infinite ease-in-out 0.5s;">
+                            <div class="cat-head">
+                                <div class="cat-ears"></div>
+                                <div class="cat-face">
+                                    <div class="cat-eyes"></div>
+                                    <div class="cat-nose"></div>
+                                    <div class="cat-mouth"></div>
+                                    <div class="cat-whiskers"></div>
+                                </div>
+                            </div>
+                            <div class="cat-body"></div>
+                            <div class="cat-tail"></div>
+                        </div>
+                        <div class="kawaii-cat cat-lavender" style="animation: kawaiiBounce 2s infinite ease-in-out 1s;">
+                            <div class="cat-head">
+                                <div class="cat-ears"></div>
+                                <div class="cat-face">
+                                    <div class="cat-eyes"></div>
+                                    <div class="cat-nose"></div>
+                                    <div class="cat-mouth"></div>
+                                    <div class="cat-whiskers"></div>
+                                </div>
+                            </div>
+                            <div class="cat-body"></div>
+                            <div class="cat-tail"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="kawaii-highlight">
+                        <div class="stat-display">∞</div>
+                        <div class="stat-label">Adaptive Possibilities 🌟</div>
+                    </div>
+                </div>
+                <div class="text-section">
+                    <div class="kawaii-box">
+                        <div class="bullet-point">Neuroplasticity Demonstrates Brain Resilience</div>
+                        <div class="bullet-point">Motor System Compensation</div>
+                        <div class="bullet-point">Individual Adaptation Strategies</div>
+                        <div class="bullet-point">Quality of Life Preservation</div>
+                        <div class="bullet-point">Research Applications</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 12: References -->
+        <div class="slide">
+            <h2>📚 References 📚</h2>
+            <div class="references-grid">
+                <div class="reference-item">
+                    Meet Olive The Cat + Olive Adoption Page <em>YouTube</em>, https://www.youtube.com/watch?v=_UbbayN4rns; https://us10d.sheltermanager.com/service?account=jd2879&method=animal_view&animalid=1186&template=animalview.
+                </div>
+                <div class="reference-item">
+                    Sedky, A. (2025, April 12). <em>Cerebellar hypoplasia | Radiology Reference Article. Radiopaedia</em>.https://radiopaedia.org/articles/cerebellar-hypoplasia?lang=us
+                </div>
+                <div class="reference-item">
+                   Cerebellar Hypoplasia: Wobbly Cats. (2019, November 5).  <em> Fairmont Animal Hospital. </em>, https://www.fairmontvet.com/resources/blog/november-2019/cerebellar-hypoplasia-wobbly-cats
+                </div>
+                <div class="reference-item">
+                   Betbeze, S. (2022, February 11). Cerebellar Hypoplasia in Cats. <em>PetMD</em>, https://www.petmd.com/cat/conditions/neurological/c_ct_cerebellar_hypoplasia.
+                </div>
+                <div class="reference-item">
+                   Weir, M., Hunter, T., & Yuill, C. (n.d.). Cerebellar Hypoplasia in Cats.  <em>VCA Animal Hospitals. </em>, https://vcahospitals.com/know-your-pet/cerebellar-hypoplasia-in-cats.
+                </div>
+                <div class="reference-item">
+                    Animal AND Physiology Notes. <em> UNCC 2025</em> Class Notes.
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="font-family: 'Comfortaa', cursive; font-size: 1.5rem; color: #f472b6; font-weight: 600;">
+                    Thank you for joining this science journey! 🌸💖✨
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" onclick="previousSlide()">‹</button>
+            <button class="nav-btn" onclick="nextSlide()">›</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+        }
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            updateProgress();
+            
+            // Trigger simulation on slide 8
+            if (currentSlide === 7) {
+                setTimeout(runSimulation, 1000);
+            }
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        // simulation
+        function runSimulation() {
+            const grid = document.getElementById('simulation-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            const totalTrials = 160; 
+            const severity = 0.6;
+            const adaptation = 0.4;
+            const nodes = 10;
+            
+            for (let trial = 0; trial < totalTrials; trial++) {
+                setTimeout(() => {
+                    let trialSuccess = true;
+                    
+                    for (let node = 0; node < nodes; node++) {
+                        const failureProbability = severity * (1 - adaptation);
+                        if (Math.random() < failureProbability) {
+                            trialSuccess = false;
+                            break;
+                        }
+                    }
+                    
+                    const dot = document.createElement('div');
+                    dot.className = 'trial-dot';
+                    dot.style.animationDelay = '0s';
+                    
+                    if (trialSuccess) {
+                        dot.classList.add('success');
+                    } else if (Math.random() < 0.7) {
+                        dot.classList.add('jitter');
+                    } else {
+                        dot.classList.add('failure');
+                    }
+                    
+                    grid.appendChild(dot);
+                }, trial * 30);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                showSlide(0);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                showSlide(totalSlides - 1);
+            }
+        });
+        
+        // Initialize
+        updateProgress();
+    </script>
+
+</body></html>
