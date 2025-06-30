@@ -1,6 +1,7 @@
 #  NeuroCat: A Simulation of Motor Coordination Disruption from Cerebellar Hypoplasia in Felines
 
 **By SUMMER MALIK**  
+link for class presentation on youtube: https://www.youtube.com/watch?v=_yIPF5xKCNg
 Student @University of North Carolina at Charlotte  
 Department of Biological Sciences × Computer Science
 Created for my Animal Physiology Course
