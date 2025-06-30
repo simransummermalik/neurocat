@@ -1,4 +1,4 @@
-# 🧠 NeuroCat: A Simulation of Motor Coordination Disruption from Cerebellar Hypoplasia in Felines
+#  NeuroCat: A Simulation of Motor Coordination Disruption from Cerebellar Hypoplasia in Felines
 
 **By SUMMER MALIK**  
 Student @University of North Carolina at Charlotte  
@@ -41,7 +41,7 @@ CH is often linked to prenatal infections (e.g. *feline panleukopenia virus*) th
 
 ---
 
-## 🧠 Simulation Design
+## Simulation Design
 
 The simulation represents the motor signal pathway as a linear sequence of **neural nodes** — abstracted synapses, axon bundles, or integration units — that a brain-generated command must traverse to reach muscles.
 
@@ -58,7 +58,7 @@ A single motor command is successful only if **all nodes succeed**. If any node 
 
 ---
 
-## 📊 Output Metrics
+## Output Metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -93,7 +93,7 @@ This simulates **complete signal transmission**, and all other outcomes are cate
 
 ---
 
-## 💻 Technologies Used
+## Technologies Used
 
 - **Python 3.11**  
 - **Streamlit** – interactive UI for simulation control  
@@ -102,7 +102,7 @@ This simulates **complete signal transmission**, and all other outcomes are cate
 
 ---
 
-## 🔬 Research Context
+## Research Context
 
 This tool reflects foundational themes in:
 
